@@ -65,15 +65,19 @@ for i = 2:2:6
     plot(T(a,:),data(i).mean_flow_out);
     hold on;
     plot(T(a,:),data(i).mean_flow_in);
-    pos = abs(data(i).mean_flow_in);
-    area(a,1) = integral(@(x) interp1(T(a,:),data(i).mean_flow_out , x), min(T(a,:)), max(T(a,:)), 'ArrayValued', true);
-    area(a,2) = integral(@(x) interp1(T(a,:),data(i).mean_flow_in, x), min(T(a,:)), max(T(a,:)), 'ArrayValued', true);
     a = a+1;
 end
 
+area1 = trapz(T(1,:),data(2).mean_flow_out);
+area2 = trapz(T(1,:),data(2).mean_flow_in);
 
-area_simpson(1:) = integral(@(x) interp1(T(1,:),data(4).mean_flow_out , x), min(T(1,:)), max(T(1,:)), 'ArrayValued', true);
-area_simpson2 = integral(@(x) interp1(T(1,:),data(4).mean_flow_in , x), min(T(1,:)), max(T(1,:)), 'ArrayValued', true);
 
 
+
+% maska = double(mask1);
+% maska(maska>0) = 10000;
+% maska2 = double(mask2);
+% maska2(maska2>0) = 10000;
+% imshow(maska+maska2+double(data(2).image(1).each_image),[-10 4498]);
+% title('Mask in Flow Scan')
 
